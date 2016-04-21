@@ -125,9 +125,10 @@ public class Inventory {
      * @return String
      */
     public String toString() {
-    	return "Coffee: " + getCoffee() + "\n" +
-			"Milk: " + getMilk() + "\n" +
-			"Sugar: " + getSugar() + "\n" +
-			"Chocolate: " + getChocolate() + "\n";
+    	String septor=System.getProperty("line.separator");
+    	return "Coffee: " + getCoffee() + septor +
+			"Milk: " + getMilk() + septor +
+			"Sugar: " + getSugar() + septor +
+			"Chocolate: " + getChocolate() + septor;
     }
 }
