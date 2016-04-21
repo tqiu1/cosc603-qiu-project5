@@ -33,10 +33,53 @@ public class CoffeeMakerTest extends TestCase {
 	}
 
 	public void testEditRecipe1() {
+		
 		cm.addRecipe(r1);
 		Recipe newRecipe = new Recipe();
 		newRecipe = r1;
 		newRecipe.setAmtSugar(2);
 		assertTrue(cm.editRecipe(r1, newRecipe));
 	}
+	
+	public void testAddRecipe11() {
+		
+		Recipe newRecipe = new Recipe();
+		newRecipe.setName("Coffee");
+		newRecipe.setPrice(50);
+		newRecipe.setAmtCoffee(3);
+		newRecipe.setAmtMilk(1);
+		newRecipe.setAmtSugar(1);
+		newRecipe.setAmtChocolate(0);
+			
+		assertTrue(cm.addRecipe(newRecipe));
+	}
+	
+	public void deleteRecipe11() {
+		
+		Recipe newRecipe = new Recipe();
+		newRecipe.setName("Coffee");
+		newRecipe.setPrice(50);
+		newRecipe.setAmtCoffee(3);
+		newRecipe.setAmtMilk(1);
+		newRecipe.setAmtSugar(1);
+		newRecipe.setAmtChocolate(0);
+		cm.addRecipe(newRecipe);
+		assertTrue(cm.deleteRecipe(newRecipe));
+	}
+	
+	public void editRecipe11() {
+		
+		Recipe oldRecipe = new Recipe();
+		oldRecipe.setName("Coffee");
+		oldRecipe.setPrice(50);
+		oldRecipe.setAmtCoffee(3);
+		oldRecipe.setAmtMilk(1);
+		oldRecipe.setAmtSugar(1);
+		oldRecipe.setAmtChocolate(0);
+		cm.addRecipe(oldRecipe);
+		Recipe newRecipe = new Recipe();
+		newRecipe = oldRecipe;
+		assertTrue(cm.editRecipe(oldRecipe, newRecipe));
+	}
+	
 }
