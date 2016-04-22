@@ -1,6 +1,7 @@
 package edu.towson.cis.cosc603.project5.coffeemaker;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,6 +49,7 @@ public class CoffeeMakerTest extends TestCase {
     /**
      * Test for deleteRecipe() method
      */ 
+	@Test
 	public void testDeleteRecipe1() {
 
 		cm.addRecipe(r1);
@@ -58,6 +60,7 @@ public class CoffeeMakerTest extends TestCase {
     /**
      * Test for editRecipe() method
      */ 
+	@Test
 	public void testEditRecipe1() {
 
 		cm.addRecipe(r1);
@@ -69,34 +72,41 @@ public class CoffeeMakerTest extends TestCase {
     /**
      * Test for checkInventory method
    */ 
-  
+	@Test
     public void testCheckInventory() {
-		Recipe oldRecipe = new Recipe();
-		oldRecipe.setName("Coffee");
-		oldRecipe.setPrice(50);
-		oldRecipe.setAmtCoffee(3);
-		oldRecipe.setAmtMilk(1);
-		oldRecipe.setAmtSugar(1);
-		oldRecipe.setAmtChocolate(0);
-		cm.addRecipe(oldRecipe);
-		assertEquals(3,cm.checkInventory().getCoffee());
+		cm.addRecipe(r1);
+		assertEquals(15,cm.checkInventory().getCoffee());
     }
     
     /**
      * Testing for addInventory method
-   */ 
+   */
+	@Test
     public void testAddInventory(){
-    	assertTrue(cm.addInventory(3,4,2,1));
-    	
+		cm.addRecipe(r1);
+    	assertFalse(cm.addInventory(0,0,2,-1));
+    	assertFalse(cm.addInventory(-2,0,0,1));
+       	assertFalse(cm.addInventory(0,0,2,1));
+    	assertTrue(cm.addInventory(0,0,0,1));
+    	assertEquals(16,i.getChocolate());
     }
     
     /**
      * Testing for makeCoffee method
    */ 
+	@Test
     public void testMakeCoffee(){
  	    	
     	assertEquals(30, cm.makeCoffee(r1, 80));
     	
     }
-    
+	
+    /**
+     * Testing for getRecipeForName(String name)method
+   */ 
+	@Test
+	public void testGetRecipeForName() {
+		cm.addRecipe(r1);
+		assertEquals(r1, cm.getRecipeForName("Coffee"));
+	}
 }
