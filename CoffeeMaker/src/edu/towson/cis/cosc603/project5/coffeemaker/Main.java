@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  * @version $Revision: 1.0 $
  */
 public class Main {
-    private static CoffeeMaker coffeeMaker;
+    static CoffeeMaker coffeeMaker;
     final static String septor=System.getProperty("line.separator");
     public static void mainMenu() {
         System.out.println("1. Add a recipe");
@@ -261,7 +261,7 @@ public class Main {
      * @param value String
      * @return int
      */
-    private static int stringToInt(String value) {
+    static int stringToInt(String value) {
         int returnInt = -1;
         try {
             returnInt = Integer.parseInt(value);
