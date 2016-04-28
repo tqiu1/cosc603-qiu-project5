@@ -65,7 +65,7 @@ public class CoffeeMaker {
 	 * @return
 	 */
 	
-	private boolean checkRecipe(Recipe r, boolean canAddRecipe) {
+	boolean checkRecipe(Recipe r, boolean canAddRecipe) {
 		//Check if the recipe already exists
         for(int i = 0; i < NUM_RECIPES; i++) {
             if(r.equals(recipeArray[i])) {

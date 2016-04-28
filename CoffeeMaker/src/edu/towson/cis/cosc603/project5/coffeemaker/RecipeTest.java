@@ -247,7 +247,23 @@ public class RecipeTest {
 
 		// add additional test code here
 	}
+	/**
+	 * Run the void setAmtCoffee(int) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 4/23/16 12:30 PM
+	 */
+	@Test
+	public void testSetAmtCoffee_3()
+		throws Exception {
+		Recipe fixture = RecipeFactory.createRecipe2();
+		int amtCoffee = 0;
 
+		fixture.setAmtCoffee(amtCoffee);
+
+		// add additional test code here
+	}
 	/**
 	 * Run the void setAmtMilk(int) method test.
 	 *

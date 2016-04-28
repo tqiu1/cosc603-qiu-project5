@@ -57,6 +57,14 @@ public class CoffeeMakerTest extends TestCase {
 		
 
 	}
+	
+	@Test
+	public void testcheckRecipe1() {
+
+		//cm.addRecipe(r1);
+		assertTrue(cm.checkRecipe(r1, true));
+	}
+	
     /**
      * Test for editRecipe() method
      */ 
@@ -88,6 +96,7 @@ public class CoffeeMakerTest extends TestCase {
     	assertFalse(cm.addInventory(-2,0,0,1));
        	assertFalse(cm.addInventory(0,0,2,1));
     	assertTrue(cm.addInventory(0,0,0,1));
+    	assertFalse(cm.addInventory(10,10,10,10));
     	assertEquals(16,i.getChocolate());
     }
     
