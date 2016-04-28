@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>MainTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CoffeeMaker (1) (Apr 27, 2016 11:39:39 PM)</a> &gt; <a href="../../index.html" class="el_group">CoffeeMaker</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.towson.cis.cosc603.project5.coffeemaker</a> &gt; <span class="el_source">MainTest.java</span></div><h1>MainTest.java</h1><pre class="source lang-java linenums">package edu.towson.cis.cosc603.project5.coffeemaker;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import junit.framework.TestCase;
+
+/**
+ *
+ */
+<span class="fc" id="L13">public class MainTest extends TestCase {</span>
+	private CoffeeMaker cm;
+	private Inventory i;
+	private Recipe r1;
+	private Main m;
+
+	@Before 
+	/**
+	 * The setUp method that creates the necessary test objects.
+	 */
+	
+	public void setUp() {
+<span class="fc" id="L25">		cm = new CoffeeMaker();</span>
+<span class="fc" id="L26">		m=new Main();</span>
+		//cm = m.coffeeMaker;
+<span class="fc" id="L28">		i = cm.checkInventory();</span>
+
+<span class="fc" id="L30">		r1 = new Recipe();</span>
+<span class="fc" id="L31">		r1.setName(&quot;Coffee&quot;);</span>
+<span class="fc" id="L32">		r1.setPrice(50);</span>
+<span class="fc" id="L33">		r1.setAmtCoffee(3);</span>
+<span class="fc" id="L34">		r1.setAmtMilk(1);</span>
+<span class="fc" id="L35">		r1.setAmtSugar(1);</span>
+<span class="fc" id="L36">		r1.setAmtChocolate(0);</span>
+<span class="fc" id="L37">	}</span>
+	
+	@Test 
+	/**
+	 * Runs various equality tests against the Main class
+	 */
+	
+    /**
+     * Test against for mainMenu() method
+     */ 
+	
+	public void testMainMenu(){
+		//m.mainMenu();
+<span class="fc" id="L50">        System.out.println(&quot;1. Add a recipe&quot;);</span>
+<span class="fc" id="L51">        System.out.println(&quot;2. Delete a recipe&quot;);</span>
+<span class="fc" id="L52">        System.out.println(&quot;3. Edit a recipe&quot;);</span>
+<span class="fc" id="L53">        System.out.println(&quot;4. Add inventory&quot;);</span>
+<span class="fc" id="L54">        System.out.println(&quot;5. Check inventory&quot;);</span>
+<span class="fc" id="L55">        System.out.println(&quot;6. Make coffee&quot;);</span>
+<span class="fc" id="L56">        System.out.println(&quot;0. Exit&quot;);</span>
+ /*       
+        //Get user input
+        final int userInput = m.stringToInt(m.inputOutput(&quot;Please press the number that corresponds to what you would like the coffee maker to do.&quot;));
+        
+        if(userInput == 1) testAddRecipe();
+        if(userInput == 2) testDeleteRecipe();
+        if(userInput == 3) testEditRecipe();
+        if(userInput == 4) testAddInventory();
+        if(userInput == 5) testCheckInventory();
+        if(userInput == 6) testMakeCoffee();
+        if(userInput == 0) System.exit(0);
+  */      
+<span class="fc" id="L69">	}</span>
+    /**
+     * Test against for AddRecipe() method
+     */ 
+	@Test 
+	public void testAddRecipe(){
+<span class="nc" id="L75">		m.addRecipe();</span>
+<span class="nc" id="L76">		assertEquals(r1, m.coffeeMaker.getRecipeForName(&quot;Coffee&quot;));</span>
+<span class="nc" id="L77">	}</span>
+	/**
+     * Test against for DeleteRecipe() method
+     */ 
+	@Test 
+	public void testDeleteRecipe(){
+<span class="nc" id="L83">		m.deleteRecipe();</span>
+<span class="nc" id="L84">	}</span>
+	/**
+     * Test against for EditRecipe() method
+     */
+	@Test 
+	public void testEditRecipe(){
+<span class="nc" id="L90">		m.editRecipe();</span>
+<span class="nc" id="L91">	}</span>
+	
+	/**
+     * Test against for addInventory() method
+     */ 
+	@Test 
+	public void testAddInventory(){
+<span class="nc" id="L98">		m.addInventory();</span>
+<span class="nc" id="L99">	}</span>
+	
+	/**
+     * Test against for checkInventory() method
+     */ 
+	@Test 
+	public void testCheckInventory(){
+<span class="nc" id="L106">		m.checkInventory();</span>
+<span class="nc" id="L107">	}</span>
+	
+	/**
+     * Test against for makeCoffee() method
+     */	
+	@Test 
+	public void testMakeCoffee(){
+<span class="nc" id="L114">		m.makeCoffee();</span>
+<span class="nc" id="L115">	}</span>
+	
+	@Test 
+	public void testStringToInt(){
+<span class="fc" id="L119">		assertEquals(2,m.stringToInt(&quot;2&quot;));</span>
+<span class="fc" id="L120">	}</span>
+	}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>CoffeeMaker (1) (Apr 27, 2016 11:39:39 PM)</div></body></html>
