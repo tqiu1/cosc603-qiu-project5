@@ -11,7 +11,7 @@ import junit.framework.TestCase;
  *
  */
 public class CoffeeMakerTest extends TestCase {
-	private CoffeeMaker cm;
+	private CoffeeMaker  cm;
 	private Inventory i;
 	private Recipe r1;
 
