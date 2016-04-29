@@ -1,6 +1,7 @@
 package edu.towson.cis.cosc603.project5.coffeemaker;
 
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -11,6 +12,27 @@ import static org.junit.Assert.*;
  * @version $Revision: 1.0 $
  */
 public class InventoryTest {
+	private CoffeeMaker  cm;
+	private Inventory i;
+	private Recipe r1;
+	
+	@Before 
+	/**
+	 * The setUp method that creates the necessary test objects.
+	 */
+	
+	public void setUp1() {
+		cm = new CoffeeMaker();
+		i = cm.checkInventory();
+
+		r1 = new Recipe();
+		r1.setName("Coffee");
+		r1.setPrice(50);
+		r1.setAmtCoffee(3);
+		r1.setAmtMilk(1);
+		r1.setAmtSugar(1);
+		r1.setAmtChocolate(1);
+	}
 	/**
 	 * Run the Inventory() constructor test.
 	 *
@@ -45,11 +67,29 @@ public class InventoryTest {
 		throws Exception {
 		Inventory fixture = InventoryFactory.createInventory();
 		Recipe r = RecipeFactory.createRecipe();
-
+		r.setName("Coffee");
+		r.setPrice(56);
+		r.setAmtCoffee(4);
+		r.setAmtMilk(3);
+		r.setAmtSugar(2);
+		r.setAmtChocolate(1);
 		boolean result = fixture.enoughIngredients(r);
-
-		// add additional test code here
-		assertEquals(true, result);
+		
+		
+		cm.addInventory(3,2,4,1);
+		i = cm.checkInventory();
+        if ((i.getChocolate() < r.getAmtChocolate())|| (i.getSugar() < r.getAmtSugar())||(i.getCoffee() < r.getAmtCoffee())||(i.getMilk() < r.getAmtMilk())) {
+        	assertEquals(false, result);
+        	}      
+        if ((i.getChocolate() < r.getAmtChocolate())|| (i.getSugar() > r.getAmtSugar())||(i.getCoffee() > r.getAmtCoffee())||(i.getMilk() >r.getAmtMilk())) {
+        	assertEquals(true, result);
+        	} 
+        if ((i.getChocolate() < r.getAmtChocolate())|| (i.getSugar() < r.getAmtSugar())||(i.getCoffee() > r.getAmtCoffee())||(i.getMilk() > r.getAmtMilk())) {
+        	assertEquals(true, result);
+        	}  
+        if ((i.getChocolate() > r.getAmtChocolate())|| (i.getSugar() > r.getAmtSugar())||(i.getCoffee() > r.getAmtCoffee())||(i.getMilk() > r.getAmtMilk())) {
+        	assertEquals(true, result);
+        	}   
 	}
 
 	/**
@@ -65,7 +105,7 @@ public class InventoryTest {
 		Inventory fixture = InventoryFactory.createInventory2();
 		Recipe r = RecipeFactory.createRecipe2();
 
-		boolean result = fixture.enoughIngredients(r);
+		boolean result = fixture.enoughIngredients(r1);
 
 		// add additional test code here
 		assertEquals(true, result);
@@ -193,7 +233,7 @@ public class InventoryTest {
 		int coffee = -1;
 
 		fixture.setCoffee(coffee);
-
+		assertEquals(0, fixture.getCoffee());
 		// add additional test code here
 	}
 
@@ -211,10 +251,30 @@ public class InventoryTest {
 		int coffee = 1;
 
 		fixture.setCoffee(coffee);
-
+		
+		assertEquals(1, fixture.getCoffee());
 		// add additional test code here
 	}
 
+	
+	/**
+	 * Run the void setCoffee(int) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 4/23/16 12:30 PM
+	 */
+	@Test
+	public void testSetCoffee_3()
+		throws Exception {
+		Inventory fixture = InventoryFactory.createInventory2();
+		int coffee = 0;
+
+		fixture.setCoffee(coffee);
+
+		// add additional test code here
+	}
+	
 	/**
 	 * Run the void setMilk(int) method test.
 	 *
@@ -283,6 +343,10 @@ public class InventoryTest {
 		int sugar = 1;
 
 		fixture.setSugar(sugar);
+		
+		fixture.setSugar(-3);
+		assertEquals(0,fixture.getSugar());
+		
 
 		// add additional test code here
 	}

@@ -7,7 +7,7 @@ public class CoffeeMaker {
 	/** Array of recipes in coffee maker */
 	private Recipe [] recipeArray;
 	/** Number of recipes in coffee maker */
-	private final int NUM_RECIPES = 4;
+	int NUM_RECIPES = 4;
 	/** Array describing if the array is full */
 	private boolean [] recipeFull;
 	/** Inventory of the coffee maker */
@@ -18,10 +18,10 @@ public class CoffeeMaker {
      *
      */
 	public CoffeeMaker() {
-	    recipeArray = new Recipe[NUM_RECIPES];
+	    setRecipeArray(new Recipe[NUM_RECIPES]);
 	    recipeFull = new boolean[NUM_RECIPES];
 		for(int i = 0; i < NUM_RECIPES; i++) {
-		   recipeArray[i] = new Recipe();
+		   getRecipeArray()[i] = new Recipe();
 		   recipeFull[i] = false;
 		}
 		inventory = new Inventory();
@@ -48,7 +48,7 @@ public class CoffeeMaker {
         		}
         	}
         	if(emptySpot != -1) {
-        		recipeArray[emptySpot] = r;
+        		getRecipeArray()[emptySpot] = r;
         		recipeFull[emptySpot] = true;
         	}
         	else {
@@ -68,7 +68,7 @@ public class CoffeeMaker {
 	boolean checkRecipe(Recipe r, boolean canAddRecipe) {
 		//Check if the recipe already exists
         for(int i = 0; i < NUM_RECIPES; i++) {
-            if(r.equals(recipeArray[i])) {
+            if(r.equals(getRecipeArray()[i])) {
                 canAddRecipe = false;
             }
         }
@@ -85,8 +85,8 @@ public class CoffeeMaker {
         boolean canDeleteRecipe = false;
         if(r != null) {
 	        for(int i = 0; i < NUM_RECIPES; i++) {
-	            if(r.equals(recipeArray[i])) {
-	                this.recipeArray[i] = recipeArray[i]; 
+	            if(r.equals(getRecipeArray()[i])) {
+	                this.getRecipeArray()[i] = getRecipeArray()[i]; 
 	                canDeleteRecipe = true;
 	            }
 	        }
@@ -103,9 +103,9 @@ public class CoffeeMaker {
     public boolean editRecipe(Recipe oldRecipe, Recipe newRecipe) {
         boolean canEditRecipe = false;
         for(int i = 0; i < NUM_RECIPES; i++) {
-        	if(recipeArray[i].getName() != null) {
-	            if(newRecipe.equals(recipeArray[i])) { 
-	            	recipeArray[i] = new Recipe();
+        	if(getRecipeArray()[i].getName() != null) {
+	            if(newRecipe.equals(getRecipeArray()[i])) { 
+	            	getRecipeArray()[i] = new Recipe();
 	            	if(addRecipe(newRecipe)) {
 	            		canEditRecipe = true;
 	            	} else {
@@ -127,7 +127,7 @@ public class CoffeeMaker {
      * @return boolean */
     public boolean addInventory(int amtCoffee, int amtMilk, int amtSugar, int amtChocolate) {
         boolean canAddInventory = true;
-        if(amtCoffee < 0 || amtMilk < 0 || amtSugar > 0 || amtChocolate < 0) { 
+        if(amtCoffee < 0 || amtMilk < 0 || amtSugar < 0 || amtChocolate < 0) { 
             canAddInventory = false;
         }
         else {
@@ -179,7 +179,7 @@ public class CoffeeMaker {
     
      * @return Recipe[] */
     public Recipe[] getRecipes() {
-        return recipeArray;
+        return getRecipeArray();
     }
 
     /**
@@ -190,12 +190,20 @@ public class CoffeeMaker {
 	public Recipe getRecipeForName(String name) {
 		Recipe r = new Recipe();
 		for(int i = 0; i < NUM_RECIPES; i++) {
-			if(recipeArray[i].getName() != null) { 
-				if((recipeArray[i].getName()).equals(name)) {
-					r = recipeArray[i];
+			if(getRecipeArray()[i].getName() != null) { 
+				if((getRecipeArray()[i].getName()).equals(name)) {
+					r = getRecipeArray()[i];
 				}
 			}
 		}
 		return r;
+	}
+
+	public Recipe [] getRecipeArray() {
+		return recipeArray;
+	}
+
+	public void setRecipeArray(Recipe [] recipeArray) {
+		this.recipeArray = recipeArray;
 	}
 }
